@@ -1,0 +1,148 @@
+{% extends './base.html' %}
+{% load static %}
+{% load base_tags %}
+
+{% block title %}
+  {{object.title}}
+{% endblock %}
+
+{% block header_detail %} active {% endblock %}
+{% block blog %}<span class="sr-only">(current)</span>{% endblock %}
+
+{% block content %}
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+      <section class="page-heading" style="text-align: right;">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-content">
+                <h4>
+                  {% for category in object.published_categories.all %}
+                  <span># {{ category.title }}</span>
+                  {% endfor %}
+                </h4>
+                <h2>{{ object.title }}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <section class="blog-posts grid-system">
+      <div class="container">
+        <div class="row">
+          {% sidebar %}
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <img src="{{ object.thumbnail.url }}" alt="{{ object.title }}">
+                    </div>
+                    <div class="down-content">
+                      {% for category in object.published_categories.all %}
+                        <span># {{ category.title }}</span>
+                      {% endfor %}
+                      <a href="post-details.html"><h4>{{ object.title }}</h4></a>
+                      <ul class="post-info">
+                        <li><a href="{% url 'blog:author' object.author %}">{{ object.author.get_full_name }}</a></li>
+                        <li><a href="#">{{ object.jpublish }}</a></li>
+                        <li><a href="#">۴ دیدگاه</a></li>
+                      </ul>
+                      {{ object.description | safe }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item comments">
+                    <div class="sidebar-heading">
+                      <h2>۴ دیدگاه</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li>
+                          <div class="author-thumb">
+                            <img src="{% static 'blog/assets/images/comment-author-01.jpg' %}" alt="">
+                          </div>
+                          <div class="right-content">
+                            <h4>محمدمهدی آخوندی<span style="text-align: left;">۱۵ دی ۱۴۰۰</span></h4>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>
+                          </div>
+                        </li>
+                        <li class="replied">
+                          <div class="author-thumb">
+                            <img src="{% static 'blog/assets/images/comment-author-02.jpg' %}" alt="">
+                          </div>
+                          <div class="right-content">
+                            <h4>مریم میرزایی<span>۱۶ دی ۱۴۰۰</span></h4>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>                          </div>
+                        </li>
+                        <li>
+                          <div class="author-thumb">
+                            <img src="{% static 'blog/assets/images/comment-author-03.jpg' %}" alt="">
+                          </div>
+                          <div class="right-content">
+                            <h4>سارا شکوری<span>۲۰ دی ۱۴۰۰</span></h4>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>                          </div>
+                        </li>
+                        <li class="replied">
+                          <div class="author-thumb">
+                            <img src="{% static 'blog/assets/images/comment-author-02.jpg' %}" alt="">
+                          </div>
+                          <div class="right-content">
+                            <h4>مریم میرزایی<span>۲۲ دی ۱۴۰۰</span></h4>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item submit-comment">
+                    <div class="sidebar-heading">
+                      <h2>دیدگاه شما</h2>
+                    </div>
+                    <div class="content">
+                      <form id="comment" action="#" method="post">
+                        <div class="row">
+                          <div class="col-md-6 col-sm-12">
+                            <fieldset>
+                              <input name="name" type="text" id="name" placeholder="نام" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6 col-sm-12">
+                            <fieldset>
+                              <input name="email" type="text" id="email" placeholder="آدرس ایمیل" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-12 col-sm-12">
+                            <fieldset>
+                              <input name="subject" type="text" id="subject" placeholder="موضوع">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-12">
+                            <fieldset>
+                              <textarea name="message" rows="6" id="message" placeholder="دیدگاه خود را تایپ کنید ..." required=""></textarea>
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-12">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-button">ارسال</button>
+                            </fieldset>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

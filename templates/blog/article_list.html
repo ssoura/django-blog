@@ -1,0 +1,24 @@
+{% extends './list.html' %}
+
+{% block title %}
+  وبلاگ
+{% endblock %}
+
+{% block header_blog %} active {% endblock %}
+{% block blog %}<span class="sr-only">(current)</span>{% endblock %}
+
+{% block previous_page_url %}
+  {% url 'blog:blog' %}?page={{ page_obj.previous_page_number }}
+{% endblock %}
+
+{% block current_page_url %}
+  {% url 'blog:blog' %}?page={{i}}
+{% endblock %}
+
+{% block other_page_url %}
+  {% url 'blog:blog' %}?page={{i}}
+{% endblock %}
+
+{% block next_page_url %}
+  {% url 'blog:blog' %}?page={{ page_obj.next_page_number }}
+{% endblock %}
